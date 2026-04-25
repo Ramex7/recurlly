@@ -16,14 +16,19 @@ const TabIcon = ({focused, icon}: TabIconProps) =>
 
 export default function TabsLayout() {
     const insets = useSafeAreaInsets();
+    const tabBarBottomOffset = Math.max(insets.bottom, tabBar.horizontalInset);
+    const sceneBottomPadding = tabBar.height + tabBarBottomOffset;
   return (
       <Tabs
           screenOptions={{
               headerShown: false,
               tabBarShowLabel: false,
+              sceneStyle: {
+                  paddingBottom: sceneBottomPadding,
+              },
               tabBarStyle: {
                   position: 'absolute',
-                  bottom: Math.max(insets.bottom, tabBar.horizontalInset),
+                  bottom: tabBarBottomOffset,
                   height: tabBar.height,
                   marginHorizontal: tabBar.horizontalInset,
                   borderRadius: tabBar.radius,
